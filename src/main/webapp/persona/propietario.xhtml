@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../plantilla/plantilla.xhtml">
+
+            <ui:define name="content">
+                <h:form id="form">
+                    <p:messages id="mensaje" autoUpdate="false" severity="info,fatal,warn" showSummary="true" showDetail="true"/> 
+                    <h:panelGrid columns="6" cellpadding="5">
+                        <p:outputLabel for="nombre" value="Nombre:" />
+                        <p:inputText id="nombre" value="#{propietarioController.persona.nombre}" />
+                        <p:message for="nombre" />
+                        
+                        <p:outputLabel for="apellido1" value="Primer Apellido:" />
+                        <p:inputText id="apellido1" value="#{propietarioController.persona.primerApellido}" />
+                        <p:message for="apellido1" />
+                        
+                        <p:outputLabel for="apellido2" value="Segundo Apellido:" />
+                        <p:inputText id="apellido2" value="#{propietarioController.persona.segundoApellido}" />
+                        <p:message for="apellido2" />
+                        
+                        <p:outputLabel for="identificacion" value="Identificacion:" />
+                        <p:inputText id="identificacion" value="#{propietarioController.persona.id}" />
+                        <p:message for="identificacion" />                  
+                        
+                        <p:outputLabel for="direccion" value="Direccion:" />
+                        <p:inputText id="direccion" value="#{propietarioController.persona.direccion}" />
+                        <p:message for="direccion" />
+                        
+                        <p:outputLabel for="genero" value="Genero: "/>
+                        <p:selectOneMenu id="genero" value="#{propietarioController.persona.genero}" >
+                            <f:selectItem itemLabel="Masculino" itemValue="M" />
+                            <f:selectItem itemLabel="Femenino" itemValue="F" />
+                            <f:selectItem itemLabel="LGTBI" itemValue="L" />
+                            <f:selectItem itemLabel="No informa" itemValue="N" />
+                        </p:selectOneMenu>
+                        <p:message for="genero" />
+                        
+                        <p:commandButton value="Registrar" actionListener="#{propietarioController.create()}" />
+                        
+                    </h:panelGrid>
+                </h:form>
+                
+                
+                <h:form id="list">
+                    <p:dataTable id="table" value="#{propietarioController.propietarios}" var="propietario" paginator="true" rows="10" editable="true" >
+                        
+                        <p:ajax event="rowEdit" listener="#{propietarioController.edit(propietario)}" update=":form:mensaje" />
+                        <p:column style="width: 35px" ><p:rowEditor/></p:column>
+                        
+                        <p:column headerText="Nombre" filterBy="#{propietario.persona.nombre}" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{propietario.persona.nombre}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{propietario.persona.nombre}" />
+                                </f:facet>                                
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:column headerText="Primer Apellido" filterBy="#{propietario.persona.primerApellido}" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{propietario.persona.primerApellido}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{propietario.persona.primerApellido}" />
+                                </f:facet>                                
+                            </p:cellEditor>
+                        </p:column>
+                        
+                        <p:column headerText="Segundo Apellido" filterBy="#{propietario.persona.segundoApellido}" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{propietario.persona.segundoApellido}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{propietario.persona.segundoApellido}" />
+                                </f:facet>                                
+                            </p:cellEditor>
+                        </p:column>
+                        
+
+                        
+                        <p:column headerText="Direccion" filterBy="#{propietario.persona.direccion}" filterMatchMode="contains">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <h:outputText value="#{propietario.persona.direccion}" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:inputText value="#{propietario.persona.direccion}" />
+                                </f:facet>                                
+                            </p:cellEditor>
+                        </p:column>
+                   
+                        <p:column headerText="Eliminar">
+                            <p:commandLink actionListener="#{propietarioController.remove(propietario)}" update="@form, :form:mensaje" process="@this" /> 
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -7,6 +7,7 @@ C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\VehiculoFacadeLocal.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\model\Usuario.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\model\Contacto.java
+C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\controller\PropietarioController.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\PropietarioFacade.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\RolFacade.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\VehiculoFacade.java
@@ -16,6 +17,7 @@ C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\ContactoFacade.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\PropietarioFacadeLocal.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\PersonaFacade.java
+C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\controller\VehiculoController.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\AbstractFacade.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\EJB\UsuarioFacadeLocal.java
 C:\Users\Spetsnaz\Documents\NetBeansProjects\AnisofteraMiTaxi\src\main\java\com\war\miTaxi\app\model\Persona.java

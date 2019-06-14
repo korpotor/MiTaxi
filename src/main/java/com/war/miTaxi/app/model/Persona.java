@@ -6,14 +6,10 @@
 package com.war.miTaxi.app.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,23 +20,21 @@ import javax.persistence.TemporalType;
 public class Persona implements Serializable{
   
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private int id ;
     
     private String nombre ;
     
+    @Column(name = "primer_nombre")
     private String primerApellido ;
     
+    @Column(name = "segundo_nombre")
     private String segundoApellido ;
-    
-    private String numeroIdentificacion ;
     
     private String direccion ;
     
     private String genero ;
-    
-    @Temporal(TemporalType.DATE)
-    private Date fechaNacimiento ;
+
 
     public int getId() {
         return id;
@@ -74,14 +68,6 @@ public class Persona implements Serializable{
         this.segundoApellido = segundoApellido;
     }
 
-    public String getNumeroIdentificacion() {
-        return numeroIdentificacion;
-    }
-
-    public void setNumeroIdentificacion(String numeroIdentificacion) {
-        this.numeroIdentificacion = numeroIdentificacion;
-    }
-
     public String getDireccion() {
         return direccion;
     }
@@ -96,14 +82,6 @@ public class Persona implements Serializable{
 
     public void setGenero(String genero) {
         this.genero = genero;
-    }
-
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(Date fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
     }
 
     @Override
