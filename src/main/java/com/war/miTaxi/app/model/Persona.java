@@ -23,16 +23,22 @@ public class Persona implements Serializable{
     @Column(name = "id")
     private int id ;
     
-    private String nombre ;
-    
     @Column(name = "primer_nombre")
-    private String primerApellido ;
+    private String primerNombre ;
     
     @Column(name = "segundo_nombre")
+    private String segundoNombre ;
+    
+    @Column(name = "primer_apellido")
+    private String primerApellido ;
+    
+    @Column(name = "segundo_apellido")
     private String segundoApellido ;
     
+    @Column(name = "direccion")
     private String direccion ;
     
+    @Column(name = "genero")
     private String genero ;
 
 
@@ -44,12 +50,20 @@ public class Persona implements Serializable{
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPrimerNombre() {
+        return primerNombre;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
     }
 
     public String getPrimerApellido() {

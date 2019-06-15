@@ -6,11 +6,14 @@
 package com.war.miTaxi.app.model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -25,10 +28,13 @@ public class Vehiculo implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id ;
    
+    @Column(name = "placa")
     private String placa ;
     
+    @Column(name = "color")
     private String color ;
     
+    @Column(name = "modelo")
     private String modelo ;
     
     @Column(name = "numero_motor")
@@ -39,6 +45,10 @@ public class Vehiculo implements Serializable{
     
     @Column(name = "numero_pasajeros")
     private String numeroPasajeros ;  
+    
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "", nullable = false)
+    private Propietario propietario ;
 
     public int getId() {
         return id;
@@ -94,6 +104,14 @@ public class Vehiculo implements Serializable{
 
     public void setNumeroPasajeros(String numeroPasajeros) {
         this.numeroPasajeros = numeroPasajeros;
+    }
+
+    public Propietario getPropietario() {
+        return propietario;
+    }
+
+    public void setPropietario(Propietario propietario) {
+        this.propietario = propietario;
     }
 
     @Override

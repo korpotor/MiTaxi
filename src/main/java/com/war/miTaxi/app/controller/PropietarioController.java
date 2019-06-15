@@ -23,45 +23,65 @@ import javax.inject.Named;
  */
 @Named
 @ViewScoped
-public class PropietarioController implements Serializable{
+public class PropietarioController implements Serializable {
 
     @EJB
-    private PropietarioFacadeLocal propietarioFacadeLocalEJB ;
-    
-    private Persona persona ;
-    
-    private Propietario propietario ;   
-    
-    private List<Persona> personas ;
-    
-    private List<Propietario> propietarios ;
-    
+    private PropietarioFacadeLocal propietarioFacadeLocalEJB;
+
+    private Persona persona;
+
+    private Propietario propietario;
+
+    private List<Persona> personas;
+
+    private List<Propietario> propietarios;
+
     @PostConstruct
-    public void init(){        
-        persona = new Persona() ;
-        propietario = new Propietario() ;
-        propietarios = propietarioFacadeLocalEJB.findAll() ;
+    public void init() {
+        persona = new Persona();
+        propietario = new Propietario();
+        propietarios = propietarioFacadeLocalEJB.findAll();
     }
-    
-    public void create(){
-        propietario.setPersona(persona);
-        propietarioFacadeLocalEJB.create(propietario);
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Registro exitoso"));
+
+    public void create() {
+        try {
+            if (findById(persona) == null) {
+                propietario.setPersona(persona);
+                propietarioFacadeLocalEJB.create(propietario);
+                propietarios = propietarioFacadeLocalEJB.findAll();
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Registro exitoso"));
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning", "Ya existe un registro la identificación"));
+            }
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error en el registro"));
+        }
+
     }
-    
-    public void edit(Propietario propietario){
-        propietario.setPersona(persona);         
-        System.out.println(propietario);
-        propietarioFacadeLocalEJB.edit(propietario);
-        propietarios = propietarioFacadeLocalEJB.findAll() ;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Edición exitosa"));
-        
+
+    public void edit(Propietario propietario) {
+        try {
+            propietario.setPersona(propietario.getPersona());
+            propietarioFacadeLocalEJB.edit(propietario);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Edición exitosa"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al editar el registro"));
+        }
+
     }
-    
-    public void remove(Propietario propietario){
-        propietarioFacadeLocalEJB.remove(propietario);
-        propietarios = propietarioFacadeLocalEJB.findAll() ;
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Registro eliminado con exitoso"));
+
+    public void remove(Propietario propietario) {
+        try {
+            propietarioFacadeLocalEJB.remove(propietario);
+            propietarios = propietarioFacadeLocalEJB.findAll();
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Registro eliminado con exitoso"));
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Error al eliminar el registro"));
+        }
+    }
+
+    public Propietario findById(Persona persona) {
+        return propietarioFacadeLocalEJB.findById(persona);
     }
 
     public Persona getPersona() {
@@ -95,6 +115,5 @@ public class PropietarioController implements Serializable{
     public void setPropietarios(List<Propietario> propietarios) {
         this.propietarios = propietarios;
     }
-    
-    
+
 }

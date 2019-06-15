@@ -5,6 +5,7 @@
  */
 package com.war.miTaxi.app.EJB;
 
+import com.war.miTaxi.app.model.Persona;
 import com.war.miTaxi.app.model.Propietario;
 import java.util.List;
 import javax.ejb.Local;
@@ -29,5 +30,7 @@ public interface PropietarioFacadeLocal {
     List<Propietario> findRange(int[] range);
 
     int count();
+
+    Propietario findById(Persona persona);
     
 }
