@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <h:form id="form">
-                    <p:messages id="mensaje" autoUpdate="false" severity="info,fatal,warn" showSummary="true" showDetail="true"/> 
+                    <p:messages id="mensaje" autoUpdate="true" severity="info,fatal,warn" showSummary="true" showDetail="true" /> 
                     <h:panelGrid columns="6" cellpadding="5">
                         <p:outputLabel for="nombre" value="Nombre:" />
                         <p:inputText id="nombre" value="#{propietarioController.persona.nombre}" />
@@ -43,17 +43,23 @@
                         </p:selectOneMenu>
                         <p:message for="genero" />
                         
-                        <p:commandButton value="Registrar" actionListener="#{propietarioController.create()}" />
+                        <p:commandButton value="Registrar" actionListener="#{propietarioController.create()}" icon="ui-icon-person" update="mensaje,:list:tabla"/>
                         
                     </h:panelGrid>
                 </h:form>
                 
                 
                 <h:form id="list">
-                    <p:dataTable id="table" value="#{propietarioController.propietarios}" var="propietario" paginator="true" rows="10" editable="true" >
+                    <p:dataTable id="tabla"  value="#{propietarioController.propietarios}" var="propietario" paginator="true" rows="10" editable="true" >
                         
                         <p:ajax event="rowEdit" listener="#{propietarioController.edit(propietario)}" update=":form:mensaje" />
-                        <p:column style="width: 35px" ><p:rowEditor/></p:column>
+                        <p:column style="width:100px" headerText="Modificar"><p:rowEditor/></p:column>
+                        
+                        <f:facet name="header" >
+                            Lista de propietarios
+                            <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="pi pi-align-justify" />
+                            <p:columnToggler datasource="tabla" trigger="toggler" />
+                        </f:facet>
                         
                         <p:column headerText="Nombre" filterBy="#{propietario.persona.nombre}" filterMatchMode="contains">
                             <p:cellEditor>
@@ -101,8 +107,11 @@
                             </p:cellEditor>
                         </p:column>
                    
-                        <p:column headerText="Eliminar">
-                            <p:commandLink actionListener="#{propietarioController.remove(propietario)}" update="@form, :form:mensaje" process="@this" /> 
+                        <p:column headerText="Eliminar" style="width:120px">
+                            <p:commandLink actionListener="#{propietarioController.remove(propietario)}" update="@form, :form:mensaje" process="@this" >
+                                <p:commandButton  value="Eliminar" immediate="true" icon="ui-icon-trash"/>
+                            </p:commandLink> 
+                            
                         </p:column>
                         
                     </p:dataTable>

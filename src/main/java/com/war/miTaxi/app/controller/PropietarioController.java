@@ -50,8 +50,7 @@ public class PropietarioController implements Serializable{
     }
     
     public void edit(Propietario propietario){
-        propietario.setPersona(persona);         
-        System.out.println(propietario);
+        propietario.setPersona(propietario.getPersona());         
         propietarioFacadeLocalEJB.edit(propietario);
         propietarios = propietarioFacadeLocalEJB.findAll() ;
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje", "Edición exitosa"));
